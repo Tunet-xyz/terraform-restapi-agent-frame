@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-11-16",
+  "profiles": {
+    "muse": {
+      "vendor": "meta",
+      "protocol": "responses",
+      "base_url": "https://api.meta.ai/v1",
+      "api_key_env": "MODEL_API_KEY",
+      "instruction_role": "developer",
+      "families": ["Muse Wonder", "Muse Spark", "Muse Ember"],
+      "docs": "https://dev.meta.ai/docs/protocols/responses",
+      "notes": "Meta Model API. Model access can be preview/account dependent. Spark Open and Glimmer require a separate hosting endpoint; image/audio-specific APIs are outside this profile."
+    },
+    "deepseek": {
+      "vendor": "deepseek",
+      "protocol": "chat_completions",
+      "base_url": "https://api.deepseek.com",
+      "api_key_env": "DEEPSEEK_API_KEY",
+      "instruction_role": "system",
+      "families": ["DeepSeek"],
+      "docs": "https://api-docs.deepseek.com/",
+      "notes": "OpenAI-compatible Chat Completions surface. Preserve native reasoning_content and tool-call history in the application."
+    },
+    "qwen": {
+      "vendor": "alibaba",
+      "protocol": "chat_completions",
+      "base_url": null,
+      "api_key_env": "DASHSCOPE_API_KEY",
+      "instruction_role": "system",
+      "families": ["Qwen"],
+      "docs": "https://www.alibabacloud.com/help/en/model-studio/compatibility-of-openai-with-dashscope",
+      "notes": "Supply the workspace- and region-specific Model Studio base URL in options.base_url; credentials and model availability must match that region. No default region is chosen."
+    },
+    "kimi": {
+      "vendor": "moonshot",
+      "protocol": "chat_completions",
+      "base_url": "https://api.moonshot.ai/v1",
+      "api_key_env": "MOONSHOT_API_KEY",
+      "instruction_role": "system",
+      "families": ["Kimi"],
+      "docs": "https://platform.kimi.ai/docs/get-your-api-key",
+      "notes": "International Kimi API endpoint. Kimi Code subscriptions and regional endpoints can have different credentials and access."
+    },
+    "glm": {
+      "vendor": "zai",
+      "protocol": "chat_completions",
+      "base_url": "https://api.z.ai/api/paas/v4",
+      "api_key_env": "ZAI_API_KEY",
+      "instruction_role": "system",
+      "families": ["GLM"],
+      "docs": "https://docs.z.ai/guides/overview/quick-start",
+      "notes": "Standard Z.ai API endpoint, not the dedicated GLM Coding Plan endpoint. ZAI_API_KEY is this adapter's runtime environment convention."
+    },
+    "minimax": {
+      "vendor": "minimax",
+      "protocol": "chat_completions",
+      "base_url": "https://api.minimax.io/v1",
+      "api_key_env": "MINIMAX_API_KEY",
+      "instruction_role": "system",
+      "families": ["MiniMax"],
+      "docs": "https://platform.minimax.io/docs/api-reference/text-openai-api",
+      "notes": "OpenAI-compatible text surface. MINIMAX_API_KEY is this adapter's runtime environment convention; direct OpenAI SDK use must pass its value explicitly. Preserve reasoning_content on subsequent tool turns."
+    },
+    "cohere": {
+      "vendor": "cohere",
+      "protocol": "chat_completions",
+      "base_url": "https://api.cohere.ai/compatibility/v1",
+      "api_key_env": "COHERE_API_KEY",
+      "instruction_role": "developer",
+      "families": ["Command"],
+      "docs": "https://docs.cohere.com/docs/compatibility-api",
+      "notes": "Cohere's compatibility API, not its native v2 Chat API. Supported settings and tools are limited by the compatibility surface."
+    },
+    "nvidia": {
+      "vendor": "nvidia",
+      "protocol": "chat_completions",
+      "base_url": "https://integrate.api.nvidia.com/v1",
+      "api_key_env": "NVIDIA_API_KEY",
+      "instruction_role": "system",
+      "families": ["Nemotron", "Other NVIDIA API Catalog models"],
+      "docs": "https://docs.nvidia.com/openshell/latest/sandboxes/manage-providers",
+      "notes": "Hosted NVIDIA API Catalog endpoint. This does not deploy a self-hosted NIM or guarantee every model accepts tools or a system prompt."
+    },
+    "openrouter": {
+      "vendor": "openrouter",
+      "protocol": "chat_completions",
+      "base_url": "https://openrouter.ai/api/v1",
+      "api_key_env": "OPENROUTER_API_KEY",
+      "instruction_role": "system",
+      "families": ["Gateway-selected models"],
+      "docs": "https://openrouter.ai/developers",
+      "notes": "Gateway inference, with author/model IDs supplied by the caller. The official OpenRouterTeam/openrouter Terraform provider manages platform administration, not saved agent definitions."
+    }
+  }
+}

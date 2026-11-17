@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-11-16",
+  "backends": {
+    "openai": {
+      "module": "modules/openai",
+      "management": "remote_agent",
+      "remote_lifecycle": true,
+      "terraform_provider": "Mastercard/restapi",
+      "native_resource": "restapi_object",
+      "notes": "OpenAI's own Terraform provider currently covers administration, not saved agents.",
+      "docs": "https://developers.openai.com/api/docs/guides/agents-api/configuration"
+    },
+    "anthropic": {
+      "module": "modules/anthropic",
+      "management": "remote_agent",
+      "remote_lifecycle": true,
+      "terraform_provider": "modus-agendi/anthropic-claude-managed-agents",
+      "native_resource": "claude-managed-agents_agent",
+      "notes": "Community provider; destroy archives the agent.",
+      "docs": "https://platform.claude.com/docs/en/managed-agents/overview"
+    },
+    "grok": {
+      "module": "modules/grok",
+      "management": "definition",
+      "remote_lifecycle": false,
+      "terraform_provider": null,
+      "native_resource": null,
+      "notes": "The reviewed public API exposes Responses and tools, not saved-agent CRUD. Terraform does not execute inference.",
+      "docs": "https://docs.x.ai/developers/rest-api-reference/inference/responses"
+    },
+    "mistral": {
+      "module": "modules/mistral",
+      "management": "remote_agent",
+      "remote_lifecycle": true,
+      "terraform_provider": "Mastercard/restapi",
+      "native_resource": "restapi_object",
+      "notes": "Beta Agents API; POST create, PATCH update, GET read, DELETE remove.",
+      "docs": "https://docs.mistral.ai/api/endpoint/beta/agents"
+    },
+    "gemini": {
+      "module": "modules/gemini",
+      "management": "cloud_runtime",
+      "remote_lifecycle": true,
+      "terraform_provider": "hashicorp/google",
+      "native_resource": "google_vertex_ai_reasoning_engine",
+      "notes": "Native ADK config deployment through the official Google provider; requires an existing project and runtime identity. This is Google Cloud runtime coverage, not every standalone Gemini developer-API agent feature.",
+      "docs": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/scale/runtime/use-terraform"
+    },
+    "bedrock": {
+      "module": null,
+      "management": "cloud_agent",
+      "remote_lifecycle": true,
+      "terraform_provider": "hashicorp/aws",
+      "native_resource": "aws_bedrockagent_agent",
+      "notes": "Official provider coverage; use the native resource. No dedicated adapter in this repository.",
+      "docs": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/bedrockagent_agent"
+    },
+    "azure_foundry": {
+      "module": null,
+      "management": "cloud_runtime",
+      "remote_lifecycle": true,
+      "terraform_provider": "Azure/azapi",
+      "native_resource": "azapi_data_plane_resource",
+      "notes": "Microsoft documents Microsoft.Foundry/agents@v1 using AzAPI >=2.9.0. No dedicated adapter in this repository.",
+      "docs": "https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/deploy-hosted-agent-terraform"
+    },
+    "muse": {
+      "module": "modules/muse",
+      "inference_profile": "muse",
+      "management": "definition",
+      "remote_lifecycle": false,
+      "terraform_provider": null,
+      "native_resource": null,
+      "notes": "Portable definition and runtime request template; no inference execution or remote agent provisioning. Meta Model API. Model access can be preview/account dependent. Spark Open and Glimmer require a separate hosting endpoint; image/audio-specific APIs are outside this profile.",
+      "docs": "https://dev.meta.ai/docs/protocols/responses"
+    },
+    "deepseek": {
+      "module": "modules/inference",
+      "inference_profile": "deepseek",
+      "management": "definition",
+      "remote_lifecycle": false,
+      "terraform_provider": null,
+      "native_resource": null,
+      "notes": "Portable definition and runtime request template; no inference execution or remote agent provisioning. OpenAI-compatible Chat Completions surface. Preserve native reasoning_content and tool-call history in the application.",
+      "docs": "https://api-docs.deepseek.com/"
+    },
+    "qwen": {
+      "module": "modules/inference",
+      "inference_profile": "qwen",
+      "management": "definition",
+      "remote_lifecycle": false,
+      "terraform_provider": null,
+      "native_resource": null,
+      "notes": "Portable definition and runtime request template; no inference execution or remote agent provisioning. Supply the workspace- and region-specific Model Studio base URL in options.base_url; credentials and model availability must match that region. No default region is chosen.",
+      "docs": "https://www.alibabacloud.com/help/en/model-studio/compatibility-of-openai-with-dashscope"
+    },
+    "kimi": {
+      "module": "modules/inference",
+      "inference_profile": "kimi",
+      "management": "definition",
+      "remote_lifecycle": false,
+      "terraform_provider": null,
+      "native_resource": null,
+      "notes": "Portable definition and runtime request template; no inference execution or remote agent provisioning. International Kimi API endpoint. Kimi Code subscriptions and regional endpoints can have different credentials and access.",
+      "docs": "https://platform.kimi.ai/docs/get-your-api-key"
+    },
+    "glm": {
+      "module": "modules/inference",
+      "inference_profile": "glm",
+      "management": "definition",
+      "remote_lifecycle": false,
+      "terraform_provider": null,
+      "native_resource": null,
+      "notes": "Portable definition and runtime request template; no inference execution or remote agent provisioning. Standard Z.ai API endpoint, not the dedicated GLM Coding Plan endpoint. ZAI_API_KEY is this adapter's runtime environment convention.",
+      "docs": "https://docs.z.ai/guides/overview/quick-start"
+    },
+    "minimax": {
+      "module": "modules/inference",
+      "inference_profile": "minimax",
+      "management": "definition",
+      "remote_lifecycle": false,
+      "terraform_provider": null,
+      "native_resource": null,
+      "notes": "Portable definition and runtime request template; no inference execution or remote agent provisioning. OpenAI-compatible text surface. MINIMAX_API_KEY is this adapter's runtime environment convention; direct OpenAI SDK use must pass its value explicitly. Preserve reasoning_content on subsequent tool turns.",
+      "docs": "https://platform.minimax.io/docs/api-reference/text-openai-api"
+    },
+    "cohere": {
+      "module": "modules/inference",
+      "inference_profile": "cohere",
+      "management": "definition",
+      "remote_lifecycle": false,
+      "terraform_provider": null,
+      "native_resource": null,
+      "notes": "Portable definition and runtime request template; no inference execution or remote agent provisioning. Cohere's compatibility API, not its native v2 Chat API. Supported settings and tools are limited by the compatibility surface.",
+      "docs": "https://docs.cohere.com/docs/compatibility-api"
+    },
+    "nvidia": {
+      "module": "modules/inference",
+      "inference_profile": "nvidia",
+      "management": "definition",
+      "remote_lifecycle": false,
+      "terraform_provider": null,
+      "native_resource": null,
+      "notes": "Portable definition and runtime request template; no inference execution or remote agent provisioning. Hosted NVIDIA API Catalog endpoint. This does not deploy a self-hosted NIM or guarantee every model accepts tools or a system prompt.",
+      "docs": "https://docs.nvidia.com/openshell/latest/sandboxes/manage-providers"
+    },
+    "openrouter": {
+      "module": "modules/inference",
+      "inference_profile": "openrouter",
+      "management": "definition",
+      "remote_lifecycle": false,
+      "terraform_provider": null,
+      "native_resource": null,
+      "notes": "Portable definition and runtime request template; no inference execution or remote agent provisioning. Gateway inference, with author/model IDs supplied by the caller. The official OpenRouterTeam/openrouter Terraform provider manages platform administration, not saved agent definitions.",
+      "docs": "https://openrouter.ai/developers"
+    }
+  }
+}

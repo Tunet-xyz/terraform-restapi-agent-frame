@@ -1,0 +1,221 @@
+[
+  {
+    "name": "get_session",
+    "api_mode": "",
+    "parameters": {
+      "type": "object",
+      "required": [
+        "user_id",
+        "session_id"
+      ],
+      "properties": {
+        "user_id": {
+          "type": "string"
+        },
+        "session_id": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  {
+    "name": "async_get_session",
+    "api_mode": "async",
+    "parameters": {
+      "type": "object",
+      "required": [
+        "user_id",
+        "session_id"
+      ],
+      "properties": {
+        "user_id": {
+          "type": "string"
+        },
+        "session_id": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  {
+    "name": "list_sessions",
+    "api_mode": "",
+    "parameters": {
+      "type": "object",
+      "required": [
+        "user_id"
+      ],
+      "properties": {
+        "user_id": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  {
+    "name": "async_list_sessions",
+    "api_mode": "async",
+    "parameters": {
+      "type": "object",
+      "required": [
+        "user_id"
+      ],
+      "properties": {
+        "user_id": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  {
+    "name": "create_session",
+    "api_mode": "",
+    "parameters": {
+      "type": "object",
+      "required": [
+        "user_id"
+      ],
+      "properties": {
+        "user_id": {
+          "type": "string"
+        },
+        "session_id": {
+          "type": "string"
+        },
+        "state": {
+          "type": "object"
+        }
+      }
+    }
+  },
+  {
+    "name": "async_create_session",
+    "api_mode": "async",
+    "parameters": {
+      "type": "object",
+      "required": [
+        "user_id"
+      ],
+      "properties": {
+        "user_id": {
+          "type": "string"
+        },
+        "session_id": {
+          "type": "string"
+        },
+        "state": {
+          "type": "object"
+        }
+      }
+    }
+  },
+  {
+    "name": "delete_session",
+    "api_mode": "",
+    "parameters": {
+      "type": "object",
+      "required": [
+        "user_id",
+        "session_id"
+      ],
+      "properties": {
+        "user_id": {
+          "type": "string"
+        },
+        "session_id": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  {
+    "name": "async_delete_session",
+    "api_mode": "async",
+    "parameters": {
+      "type": "object",
+      "required": [
+        "user_id",
+        "session_id"
+      ],
+      "properties": {
+        "user_id": {
+          "type": "string"
+        },
+        "session_id": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  {
+    "name": "stream_query",
+    "api_mode": "stream",
+    "parameters": {
+      "type": "object",
+      "required": [
+        "message",
+        "user_id"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message string or object"
+        },
+        "user_id": {
+          "type": "string"
+        },
+        "session_id": {
+          "type": "string"
+        },
+        "run_config": {
+          "type": "object"
+        }
+      }
+    }
+  },
+  {
+    "name": "async_stream_query",
+    "api_mode": "async_stream",
+    "parameters": {
+      "type": "object",
+      "required": [
+        "message",
+        "user_id"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message string or object"
+        },
+        "user_id": {
+          "type": "string"
+        },
+        "session_id": {
+          "type": "string"
+        },
+        "session_events": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "run_config": {
+          "type": "object"
+        }
+      }
+    }
+  },
+  {
+    "name": "streaming_agent_run_with_events",
+    "api_mode": "async_stream",
+    "parameters": {
+      "type": "object",
+      "required": [
+        "request_json"
+      ],
+      "properties": {
+        "request_json": {
+          "type": "string"
+        }
+      }
+    }
+  }
+]
